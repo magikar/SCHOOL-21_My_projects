@@ -1,0 +1,30 @@
+________________________________________________________________________
+DOCKER
+
+docker ps -- показать все активные контейнеры (флаг -a -- показать все активные и завершенные контейнеры)
+docker images   -- показать все имиджи(образы)
+
+docker stop $(docker ps -a -q) -- остановить все контейнеры
+docker rm $(docker ps -a -q)  -- удалить все докер контейнеры
+docker rmi $(docker images -q) -- удалить все докер имеджс
+
+docker build -t ft_server .  -- собрать докер имедж
+docker run -it -p 80:80 -p 443:443 ft_server  -- запустить докер имедж в интерективном режиме
+docker run -p 80:80 -p 443:443 ft_server  -- запустить докер имедж без интерективного режима
+
+docker exec -it aafda12c2fcb bash -- для входа в интерективный режим
+
+eval "$(docker-machine env default)" -- для работы с докером в другом терминале
+
+________________________________________________________________________
+Установка DOCKER
+
+rm -rf .docker
+bash install_docker.sh    -- запустить скрипт :
+[
+brew uninstall docker
+brew cleanup
+brew update
+brew install docker
+mkdir ~/.docker && mv ~/.docker ~/goinfre/ && ln -s ~/goinfre/.docker ~/.docker
+]
